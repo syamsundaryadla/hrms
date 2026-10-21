@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "backend": "cd backend && mvnw.cmd spring-boot:run",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
