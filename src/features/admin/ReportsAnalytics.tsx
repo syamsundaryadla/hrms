@@ -145,9 +145,6 @@ export const ReportsAnalytics: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#E4E7EC]">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight text-[#101828]">Reports & Analytics</h1>
-          <p className="text-sm text-[#667085] mt-1">
-            Workforce distribution, payroll commitments, attendance punctuality and compliance reports
-          </p>
         </div>
 
         <div className="flex items-center gap-2.5">

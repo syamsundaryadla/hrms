@@ -374,9 +374,6 @@ export const EmployeeManagement: React.FC = () => {
           <h1 className="text-2xl font-bold tracking-tight text-slate-900 font-sans">
             Employee Directory
           </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Managing {employees.length} team members across Hyderabad, Vizag, and Bhubaneswar centers
-          </p>
         </div>
         <Button
           variant="primary"
@@ -388,7 +385,6 @@ export const EmployeeManagement: React.FC = () => {
         </Button>
       </div>
 
-      {unassigned > 0 && <p className="ops-muted">{unassigned} employees have no reporting Manager. Open an employee and use Edit → Reports to to assign their leave approver.</p>}
       {/* Main Employee Directory Data Table */}
       <DataTable
         key={[selectedLocationFilter,selectedShiftFilter].join(':')}

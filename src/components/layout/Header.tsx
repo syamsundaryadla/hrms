@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { logout } from '@/store/slices/authSlice';
 import { toggleSidebar, toggleMobileMenu } from '@/store/slices/uiSlice';
-import { UserRole } from '@/types';
 import maayaLogo from '@/assets/logo-new.png';
 import {
   Menu,
@@ -10,7 +9,6 @@ import {
   LogOut,
   ChevronDown,
   Clock,
-  Search,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { CommandPalette } from '@/components/common/CommandPalette';
@@ -18,7 +16,7 @@ import { CommandPalette } from '@/components/common/CommandPalette';
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user, activeRole } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
@@ -52,12 +50,6 @@ export const Header: React.FC = () => {
     navigate('/admin/dashboard');
   };
 
-  const roleBadges: Record<UserRole, { label: string; dot: string; text: string; bg: string }> = {
-    ADMIN: { label: 'Admin Portal', dot: 'bg-[#2A4FE0]', text: 'text-[#233FB8]', bg: 'bg-[#EEF4FF]' },
-    MANAGER: { label: 'Manager Portal', dot: 'bg-[#F79009]', text: 'text-[#B54708]', bg: 'bg-[#FFFAEB]' },
-    EMPLOYEE: { label: 'Self Service', dot: 'bg-[#12B76A]', text: 'text-[#027A48]', bg: 'bg-[#ECFDF3]' },
-  };
-
   return (
     <>
       <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b border-[#E4E7EC] bg-white/90 px-4 backdrop-blur-md sm:px-6">
@@ -85,35 +77,11 @@ export const Header: React.FC = () => {
               alt="Maaya World Logo"
               className="h-7 w-auto object-contain lg:hidden"
             />
-            <span
-              className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium ${roleBadges[activeRole].bg} ${roleBadges[activeRole].text}`}
-            >
-              <span className={`w-1.5 h-1.5 rounded-full ${roleBadges[activeRole].dot}`} />
-              {roleBadges[activeRole].label}
-            </span>
           </div>
         </div>
 
-        {/* Center/Right: Quick Command Search & Role Switcher */}
+        {/* Right: User Profile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Command Palette Trigger Button */}
-          <button
-            onClick={() => setCommandPaletteOpen(true)}
-            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#D0D5DD] bg-[#F7F8FA] hover:bg-white text-xs text-[#667085] hover:text-[#101828] transition-all cursor-pointer w-48 lg:w-60 shadow-xs"
-          >
-            <Search className="w-3.5 h-3.5 text-[#667085] shrink-0" />
-            <span className="truncate text-xs">Search or jump to...</span>
-            <kbd className="ml-auto text-[10px] font-mono px-1.5 py-0.5 rounded border border-[#D0D5DD] bg-white text-[#667085]">
-              Ctrl+K
-            </kbd>
-          </button>
-
-          {/* Active Portal Badge (Assigned via credentials on Login) */}
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#D0D5DD] bg-[#F7F8FA] text-xs font-medium shadow-xs">
-            <span className={`w-2 h-2 rounded-full ${roleBadges[activeRole]?.dot || 'bg-[#2A4FE0]'}`} />
-            <span className="text-[#667085]">Portal:</span>
-            <span className="text-[#101828] font-semibold">{roleBadges[activeRole]?.label || activeRole}</span>
-          </div>
 
           {/* User Profile Menu */}
           <div className="relative" ref={userMenuRef}>

@@ -130,9 +130,6 @@ export const LeaveManagement: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">Leave records</h1>
-          <p className="text-xs text-slate-500 mt-1">
-            View leave records for staffing and payroll. Managers approve or decline requests.
-          </p>
         </div>
       </div>
 
